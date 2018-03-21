@@ -16,7 +16,7 @@ class CryptoCurrenciesController < ApplicationController
     response_message = service.response!
 
     # 傳送訊息
-    client.reply_message(reply_token, message) if response_message.present?
+    client.reply_message(reply_token, response_message) if response_message.present?
 
     # 回應 200
     head :ok
