@@ -13,14 +13,14 @@ class LineBotResponseService
 
     return nil if message_type != "text" || !message_text.start_with?("bot")
 
-    response_message(type, message)
+    response_message
   end
 
   private
 
-  def response_message(type, message)
+  def response_message
     {
-      type: type,
+      type: "text",
       text: "指令輸入對了"
     }
   end
