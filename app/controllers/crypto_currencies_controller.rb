@@ -6,8 +6,8 @@ class CryptoCurrenciesController < ApplicationController
   def webhook
     # Line Bot API 物件初始化
     client = Line::Bot::Client.new { |config|
-      config.channel_secret = '9160ce4f0be51cc72c3c8a14119f567a'
-      config.channel_token = '2ncMtCFECjdTVmopb/QSD1PhqM6ECR4xEqC9uwIzELIsQb+I4wa/s3pZ4BH8hCWeqfkpVGVig/mIPDsMjVcyVbN/WNeTTw5eHEA7hFhaxPmQSY2Cud51LKPPiXY+nUi+QrXy0d7Hi2YUs65B/tVOpgdB04t89/1O/w1cDnyilFU='
+      config.channel_secret = ENV['line_channel_secret']
+      config.channel_token = ENV['line_channel_token']
     }
     
     # 取得 reply token
