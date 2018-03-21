@@ -33,7 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'line-bot-api'
+gem "line-bot-api"
+gem "figaro"
 
 group :production do
   gem "pg"
