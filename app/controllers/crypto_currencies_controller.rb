@@ -9,23 +9,15 @@ class CryptoCurrenciesController < ApplicationController
       config.channel_secret = ENV['line_channel_secret']
       config.channel_token = ENV['line_channel_token']
     }
-    
-    # 取得 reply token
-    reply_token = params['events'][0]['replyToken']
 
-    # 拿到發話方的文字
-    message_type = params['events'][0]["message"]["type"]
-    message_text = params['events'][0]["message"]["text"]
+    service = LineBotResponseService.new(params)
 
-    # 設定回覆訊息
-    message = {
-      type: message_type,
-      text: "您說的是 「#{message_text}」 嗎？"
-    }
+    reply_token = service.reply_token
+    message     = service.message
 
     # 傳送訊息
-    # response = client.reply_message(reply_token, message)
-      
+    response = client.reply_message(reply_token, message)
+
     # 回應 200
     head :ok
   end
