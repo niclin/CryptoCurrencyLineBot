@@ -24,7 +24,7 @@ class CryptoCurrenciesController < ApplicationController
     }
 
     # 傳送訊息
-    response = client.reply_message(reply_token, message)
+    # response = client.reply_message(reply_token, message)
       
     # 回應 200
     head :ok
