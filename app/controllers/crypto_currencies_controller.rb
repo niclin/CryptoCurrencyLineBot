@@ -13,10 +13,10 @@ class CryptoCurrenciesController < ApplicationController
     service = LineBotResponseService.new(params)
 
     reply_token = service.reply_token
-    message     = service.response!
+    response_message = service.response!
 
     # 傳送訊息
-    response = client.reply_message(reply_token, message)
+    client.reply_message(reply_token, message) if response_message.present?
 
     # 回應 200
     head :ok

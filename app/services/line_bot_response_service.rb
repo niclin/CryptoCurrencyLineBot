@@ -11,7 +11,7 @@ class LineBotResponseService
     message_type = @params['events'][0]["message"]["type"]
     message_text = @params['events'][0]["message"]["text"]
 
-    return if message_type != "text" || !message_text.start_with?("bot")
+    return nil if message_type != "text" || !message_text.start_with?("bot")
 
     response_message(type, message)
   end
