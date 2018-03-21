@@ -18,7 +18,7 @@ class LineBotResponseService
 
   private
 
-  def response_message
+  def response_message(type, message)
     {
       type: type,
       text: "指令輸入對了"
