@@ -16,6 +16,8 @@ class LineBotResponseService
       message_text.slice!("bot ")
       key_word = message_text.strip
 
+      return if key_word.blank?
+
       response_message =
       case key_word
       when "help" then BotMessage.help
