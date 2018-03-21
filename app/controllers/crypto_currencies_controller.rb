@@ -13,10 +13,14 @@ class CryptoCurrenciesController < ApplicationController
     # 取得 reply token
     reply_token = params['events'][0]['replyToken']
 
+    # 拿到發話方的文字
+    message_type = params['events'][0]["message"]["type"]
+    message_text = params['events'][0]["message"]["text"]
+
     # 設定回覆訊息
     message = {
-      type: 'text',
-      text: '好哦～好哦～'
+      type: message_type,
+      text: "您說的是 「#{message_text}」 嗎？"
     }
 
     # 傳送訊息
@@ -26,3 +30,6 @@ class CryptoCurrenciesController < ApplicationController
     head :ok
   end
 end
+
+
+
