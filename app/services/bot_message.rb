@@ -14,13 +14,13 @@ module BotMessage
   def btc
     response_body = coinmarketcap_ticker
     currency_data = get_currency_data_from_response(response_body, "btc")
-    "#{currency_data["price_usd"]} USD"
+    "[ Coinmarketcap ] #{currency_data["price_usd"]} USD"
   end
 
   def eth
     response_body = coinmarketcap_ticker
     currency_data = get_currency_data_from_response(response_body, "eth")
-    "#{currency_data["price_usd"]} USD"
+    "[ Coinmarketcap ] #{currency_data["price_usd"]} USD"
   end
 
   def coinmarketcap_api_endpoint
