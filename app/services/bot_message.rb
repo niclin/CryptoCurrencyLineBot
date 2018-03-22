@@ -2,7 +2,7 @@ module BotMessage
   module_function
 
   def help
-    "[ 指令說明 ]\n[ BTC查詢 ] bot btc\n[ 支援幣種 ] bot eth/eos/qtum\n[ 作者 ] https://github.com/niclin\n[ 版本 ] v 1.0.0.beta"
+    "[指令說明]\n[BTC查詢] bot btc\n[支援幣種] bot eth/eos/qtum\n[作者] https://github.com/niclin\n[版本] v 1.0.0.beta"
   end
 
   def author
@@ -14,13 +14,13 @@ module BotMessage
   def btc
     response_body = coinmarketcap_ticker
     currency_data = get_currency_data_from_response(response_body, "btc")
-    "[ Coinmarketcap ] #{currency_data["price_usd"]} USD"
+    "[Coinmarketcap] #{currency_data["price_usd"]} USD"
   end
 
   def eth
     response_body = coinmarketcap_ticker
     currency_data = get_currency_data_from_response(response_body, "eth")
-    "[ Coinmarketcap ] #{currency_data["price_usd"]} USD"
+    "[Coinmarketcap] #{currency_data["price_usd"]} USD"
   end
 
   def coinmarketcap_api_endpoint
