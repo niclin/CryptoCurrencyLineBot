@@ -7,4 +7,8 @@ module BotMessage
 [ 支援幣種 ] bot eth/eos/qtum
 [ 作者 ] https://github.com/niclin"
   end
+
+  def author
+    "找我的主人嗎？"
+  end
 end

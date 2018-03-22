@@ -7,7 +7,7 @@ class LineBotResponseService
 
     # 拿到發話方的文字
     @message_type = params['events'][0]["message"]["type"]
-    @message_text = params['events'][0]["message"]["text"]
+    @message_text = params['events'][0]["message"]["text"].downcase
   end
 
   def response!
@@ -39,6 +39,7 @@ class LineBotResponseService
   def response_by_key_word(key_word)
     case key_word
     when "help" then BotMessage.help
+    when "nic" then BotMessage.author
     else
       "指令錯誤，輸入 bot help 瞭解完整指令。"
     end
