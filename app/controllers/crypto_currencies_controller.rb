@@ -22,6 +22,3 @@ class CryptoCurrenciesController < ApplicationController
     head :ok
   end
 end
-
-
-

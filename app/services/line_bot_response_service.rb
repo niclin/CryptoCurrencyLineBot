@@ -16,13 +16,13 @@ class LineBotResponseService
       message_text.slice!("bot ")
       key_word = message_text.strip
 
-      return if key_word.blank?
-
-      response_message =
-      case key_word
-      when "help" then BotMessage.help
-      else
-        "指令錯誤，輸入 bot help 瞭解完整指令。"
+      unless key_word.blank?
+        response_message =
+        case key_word
+        when "help" then BotMessage.help
+        else
+          "指令錯誤，輸入 bot help 瞭解完整指令。"
+        end
       end
     end
 
