@@ -12,7 +12,7 @@ class LineBotResponseService
     message_text = @params['events'][0]["message"]["text"]
     response_message = ""
 
-    if message_type == "text" || message_text.start_with?("bot")
+    if message_type == "text" && message_text.start_with?("bot")
       message_text.slice!("bot ")
       key_word = message_text.strip
 
