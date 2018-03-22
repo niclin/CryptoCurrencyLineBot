@@ -40,6 +40,8 @@ class LineBotResponseService
     case key_word
     when "help" then BotMessage.help
     when "nic" then BotMessage.author
+    when "btc" then BotMessage.btc
+    when "eth" then BotMessage.eth
     else
       "指令錯誤，輸入 bot help 瞭解完整指令。"
     end
