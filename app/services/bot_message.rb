@@ -21,11 +21,13 @@ module BotMessage
   end
 
   def currency_price_info(currency)
-    currency_name = currency.upcase
-    coinmarketcap = CurrencyData::Coinmarketcap.price(currency)
-    maicoin = CurrencyData::Maicoin.price(currency)
-    bitoex = CurrencyData::Bitoex.price(currency)
+    Rails.cache.fetch("#{currency}-data", , expires_in: 60.seconds) do
+      currency_name = currency.upcase
+      coinmarketcap = CurrencyData::Coinmarketcap.price(currency)
+      maicoin = CurrencyData::Maicoin.price(currency)
+      bitoex = CurrencyData::Bitoex.price(currency)
 
-    "[#{currency_name}]\n#{coinmarketcap}\n#{maicoin}\n#{bitoex}"
+      "[#{currency_name}]\n#{coinmarketcap}\n#{maicoin}\n#{bitoex}"
+    end
   end
 end
