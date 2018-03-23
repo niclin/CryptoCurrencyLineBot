@@ -9,11 +9,12 @@ module BotMessage
     "找我的主人嗎？"
   end
 
-  def btc
-    "[BTC]\n#{CurrencyData::Coinmarketcap.price("btc")} \n#{CurrencyData::Maicoin.price("btc")}"
-  end
+  def currency_price_info(currency)
+    currency_name = currency.upcase
+    coinmarketcap = CurrencyData::Coinmarketcap.price(currency)
+    maicoin = CurrencyData::Maicoin.price(currency)
+    bitoex = CurrencyData::Bitoex.price(currency)
 
-  def eth
-    "[ETH]\n#{CurrencyData::Coinmarketcap.price("eth")}"
+    "#{currency_name}\n#{coinmarketcap}\n#{maicoin}\n{bitoex}"
   end
 end

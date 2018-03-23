@@ -1,11 +1,15 @@
 class CurrencyData::Bitoex
   class << self
     def price(currency)
-      raise Error, "Bitoex only support BTC" if currency != "btc"
+      begin
+        raise Error, "Bitoex only support BTC" if currency != "btc"
 
-      response_body = bitoex_ticker
+        response_body = bitoex_ticker
 
-      "[Bitoex_Sell]#{response_body["sell"]} (TWD)\n[Bitoex_Buy]#{response_body["buy"]} (TWD)"
+        "[Bitoex_Sell]#{response_body["sell"]} (TWD)\n[Bitoex_Buy]#{response_body["buy"]} (TWD)"
+      rescue
+        String.new
+      end
     end
 
     private

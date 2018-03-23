@@ -1,15 +1,19 @@
 class CurrencyData::Coinmarketcap
   class << self
     def price(currency)
-      response_body = coinmarketcap_ticker
-      currency_data = get_currency_data_from_response(response_body, currency)
+      begin
+        response_body = coinmarketcap_ticker
+        currency_data = get_currency_data_from_response(response_body, currency)
 
-      rank = currency_data["rank"]
-      price = currency_data["price_usd"]
-      percent_change_24h = currency_data["percent_change_24h"]
-      percent_change_1h = currency_data["percent_change_1h"]
+        rank = currency_data["rank"]
+        price = currency_data["price_usd"]
+        percent_change_24h = currency_data["percent_change_24h"]
+        percent_change_1h = currency_data["percent_change_1h"]
 
-      "[排名] #{rank}\n[1h漲跌] #{percent_change_1h} %\n[24h漲跌] #{percent_change_24h} %\n[Coinmarketcap] #{price} (USD)"
+        "[排名] #{rank}\n[1h漲跌] #{percent_change_1h} %\n[24h漲跌] #{percent_change_24h} %\n[Coinmarketcap] #{price} (USD)"
+      rescue
+        String.new
+      end
     end
 
     private
