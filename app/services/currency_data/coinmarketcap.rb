@@ -3,8 +3,13 @@ class CurrencyData::Coinmarketcap
     def price(currency)
       response_body = coinmarketcap_ticker
       currency_data = get_currency_data_from_response(response_body, currency)
-      
-      "[Coinmarketcap] #{currency_data["price_usd"]} (USD)"
+
+      rank = currency_data["rank"]
+      price = currency_data["price_usd"]
+      percent_change_24h = currency_data["percent_change_24h"]
+      percent_change_1h = currency_data["percent_change_1h"]
+
+      "[排名] #{rank}\n[1h漲跌] #{percent_change_1h} %\n[24h漲跌] #{percent_change_24h} %\n[Coinmarketcap] #{price} (USD)"
     end
 
     private
