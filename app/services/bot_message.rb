@@ -27,7 +27,7 @@ module BotMessage
       maicoin = CurrencyData::Maicoin.price(currency)
       bitoex = CurrencyData::Bitoex.price(currency)
 
-      "[#{currency_name}]\n#{coinmarketcap}\n#{maicoin}\n#{bitoex}"
+      "[#{currency_name}]\n#{coinmarketcap}\n#{maicoin}\n#{bitoex}".strip
     end
   end
 end
