@@ -6,7 +6,7 @@ class LineBotResponseService
     @reply_token = params['events'][0]['replyToken']
 
     # 拿到發話方的文字
-    @message_type = params['events'][0]["message"]["type"]
+    @message_type = params['events'][0]["message"]["type"].downcase
     @message_text = params['events'][0]["message"]["text"].downcase
   end
 

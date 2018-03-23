@@ -10,10 +10,10 @@ module BotMessage
   end
 
   def btc
-    "[BTC]\n[Coinmarketcap] #{CurrencyData::Coinmarketcap.price("btc")}"
+    "[BTC]\n #{CurrencyData::Coinmarketcap.price("btc")} \n #{CurrencyData::Bitoex.price("btc")}"
   end
 
   def eth
-    "[ETH]\n[Coinmarketcap] #{CurrencyData::Coinmarketcap.price("eth")}"
+    "[ETH]\n #{CurrencyData::Coinmarketcap.price("eth")}"
   end
 end

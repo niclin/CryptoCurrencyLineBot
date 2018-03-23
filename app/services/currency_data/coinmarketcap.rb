@@ -3,7 +3,7 @@ class CurrencyData::Coinmarketcap
     def price(currency)
       response_body = coinmarketcap_ticker
       currency_data = get_currency_data_from_response(response_body, currency)
-      "#{currency_data["price_usd"]} USD"
+      "[Coinmarketcap] #{currency_data["price_usd"]} (USD)"
     end
 
     private
