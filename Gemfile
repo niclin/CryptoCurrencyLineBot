@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem "line-bot-api"
 gem "figaro"
 gem "rest-client"
+gem "config"
 
 group :production do
   gem "pg"
