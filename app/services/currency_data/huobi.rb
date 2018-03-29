@@ -2,10 +2,12 @@ class CurrencyData::Huobi
   class << self
 
     def price(currency)
-      response_body = get_huobi_ticker(currency)
-      average_price = (response_body["tick"]["ask"].first.to_d + response_body["tick"]["bid"].first.to_d) / 2
+      begin
+        response_body = get_huobi_ticker(currency)
+        average_price = (response_body["tick"]["ask"].first.to_d + response_body["tick"]["bid"].first.to_d) / 2
 
-      "[Huobi_Price] #{average_price} (USDT)"
+        "[Huobi_Price] #{average_price} (USDT)"
+      rescue
     end
 
 
