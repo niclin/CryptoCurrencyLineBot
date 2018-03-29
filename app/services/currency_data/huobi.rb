@@ -8,6 +8,8 @@ class CurrencyData::Huobi
 
         "[Huobi_Price] #{average_price} (USDT)"
       rescue
+        String.new
+      end
     end
 
 
