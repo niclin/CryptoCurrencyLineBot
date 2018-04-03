@@ -9,11 +9,10 @@ class CurrencyData::Coinmarketcap
         price = currency_data["price_usd"]
         percent_change_24h = currency_data["percent_change_24h"]
         percent_change_1h = currency_data["percent_change_1h"]
-        1h_chart_emoji = percent_change_1h.to_d.positive? ? "📈" : "📉"
-        24h_chart_emoji = percent_change_24h.to_d.positive? ? "📈" : "📉"
+        chart_emoji_1h = percent_change_1h.to_d.positive? ? "📈" : "📉"
+        chart_emoji_24h = percent_change_24h.to_d.positive? ? "📈" : "📉"
 
-
-        "[排名] #{rank}\n[1h漲跌 #{1h_chart_emoji}] #{percent_change_1h} %\n[24h漲跌 #{24h_chart_emoji}] #{percent_change_24h} %\n[Coinmarketcap] #{price} (USD)"
+        "[排名] #{rank}\n[1h漲跌 #{chart_emoji_1h}] #{percent_change_1h} %\n[24h漲跌 #{chart_emoji_24h}] #{percent_change_24h} %\n[Coinmarketcap] #{price} (USD)"
       rescue
         String.new
       end
