@@ -12,7 +12,7 @@ class CurrencyData::Maicoin
 
         "[Maicoin_Price] #{price} (TWD)\n[Maicoin_Sell] #{sell_price} (TWD)\n[Maicoin_Buy] #{buy_price} (TWD)"
       rescue
-        String.new
+        nil
       end
     end
 

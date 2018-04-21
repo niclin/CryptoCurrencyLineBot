@@ -8,7 +8,7 @@ class CurrencyData::Bitoex
 
         "[Bitoex_Sell]#{response_body["sell"]} (TWD)\n[Bitoex_Buy]#{response_body["buy"]} (TWD)"
       rescue
-        String.new
+        nil
       end
     end
 
