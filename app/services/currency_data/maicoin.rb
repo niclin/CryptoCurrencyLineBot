@@ -10,7 +10,11 @@ class CurrencyData::Maicoin
         sell_price = response_body["sell_price"].to_f.round(2)
         buy_price = response_body["buy_price"].to_f.round(2)
 
-        "[Maicoin_Price] #{price} (TWD)\n[Maicoin_Sell] #{sell_price} (TWD)\n[Maicoin_Buy] #{buy_price} (TWD)"
+        message = "[Maicoin_Price] #{price} (TWD)
+                   [Maicoin_Sell] #{sell_price} (TWD)
+                   [Maicoin_Buy] #{buy_price} (TWD)
+                   "
+        message.delete(" ")
       rescue
         nil
       end

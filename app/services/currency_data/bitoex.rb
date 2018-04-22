@@ -6,7 +6,11 @@ class CurrencyData::Bitoex
 
         response_body = bitoex_ticker
 
-        "[Bitoex_Sell]#{response_body["sell"]} (TWD)\n[Bitoex_Buy]#{response_body["buy"]} (TWD)"
+        message = "[Bitoex_Sell]#{response_body["sell"]} (TWD)
+                   [Bitoex_Buy]#{response_body["buy"]} (TWD)
+                   "
+
+        message.delete(" ")
       rescue
         nil
       end
