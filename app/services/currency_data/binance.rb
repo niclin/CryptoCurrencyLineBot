@@ -9,7 +9,7 @@ class CurrencyData::Binance
 
         "[Binance_Price] #{average_price} (USDT)"
       rescue
-        String.new
+        nil
       end
     end
 

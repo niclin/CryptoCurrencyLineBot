@@ -14,7 +14,7 @@ class CurrencyData::Coinmarketcap
 
         "[排名] #{rank}\n[1h漲跌 #{chart_emoji_1h}] #{percent_change_1h} %\n[24h漲跌 #{chart_emoji_24h}] #{percent_change_24h} %\n[Coinmarketcap] #{price} (USD)"
       rescue
-        String.new
+        nil
       end
     end
 

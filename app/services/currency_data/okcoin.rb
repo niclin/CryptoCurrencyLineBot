@@ -8,7 +8,7 @@ class CurrencyData::Okcoin
 
         "[Okcoin_Price] #{average_price} (USD)"
       rescue
-        String.new
+        nil
       end
     end
 
