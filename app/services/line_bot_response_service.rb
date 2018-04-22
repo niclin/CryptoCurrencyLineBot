@@ -40,6 +40,6 @@ class LineBotResponseService
     return BotMessage.currency_price_info(key_word) if Settings.crypto_currencies.include?(key_word)
     return BotMessage.help if key_word == "help"
     return BotMessage.author if key_word == "nic"
-    return "指令錯誤，輸入 bot help 瞭解完整指令。" 
+    return BotMessage.error
   end
 end

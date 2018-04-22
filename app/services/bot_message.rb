@@ -47,4 +47,8 @@ module BotMessage
       message
     end
   end
+
+  def error
+    "指令錯誤，輸入 bot help 瞭解完整指令。"
+  end
 end
