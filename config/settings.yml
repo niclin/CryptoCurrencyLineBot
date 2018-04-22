@@ -14,8 +14,8 @@ crypto_currencies:
 
 crypto_exchanges:
   - coinmarketcap
-  - binance
   - bitoex
-  - huobi
   - maicoin
+  - binance
+  - huobi
   - okcoin
