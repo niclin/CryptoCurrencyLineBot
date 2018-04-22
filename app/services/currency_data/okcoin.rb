@@ -5,7 +5,7 @@ class CurrencyData::Okcoin
       begin
         response_body = get_okcoin_ticker(currency)
         average_price = (response_body["ticker"]["buy"].to_d + response_body["ticker"]["sell"].to_d) / 2
-        average_price = average_price.round(2)
+        average_price = average_price.to_f.round(2)
 
         message = "[Okcoin_Price] #{average_price} (USD)"
       rescue

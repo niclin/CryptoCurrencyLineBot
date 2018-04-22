@@ -4,7 +4,7 @@ class CurrencyData::Huobi
       begin
         response_body = get_huobi_ticker(currency)
         average_price = (response_body["tick"]["ask"].first.to_d + response_body["tick"]["bid"].first.to_d) / 2
-        average_price = average_price.round(2)
+        average_price = average_price.to_f.round(2)
 
         message = "[Huobi_Price] #{average_price} (USDT)"
       rescue
