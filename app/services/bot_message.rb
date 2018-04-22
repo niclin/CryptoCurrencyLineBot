@@ -44,7 +44,7 @@ module BotMessage
         message.concat("#{info}\n") if info.present?
       end
 
-      message.chmop
+      message.chomp
     end
   end
 
