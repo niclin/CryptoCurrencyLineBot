@@ -11,3 +11,11 @@ crypto_currencies:
   - bnb
   - ltc
   - bnb
+
+crypto_exchanges:
+  - coinmarketcap
+  - binance
+  - bitoex
+  - huobi
+  - maicoin
+  - okcoin

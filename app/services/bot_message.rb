@@ -36,24 +36,15 @@ module BotMessage
 
   def currency_price_info(currency)
     Rails.cache.fetch("#{currency}-data", expires_in: 60.seconds) do
-      currency_name = "[#{currency.upcase}]"
-      coinmarketcap = CurrencyData::Coinmarketcap.price(currency)
-      maicoin = CurrencyData::Maicoin.price(currency)
-      bitoex = CurrencyData::Bitoex.price(currency)
-      huobi = CurrencyData::Huobi.price(currency)
-      okcoin = CurrencyData::Okcoin.price(currency)
-      binance = CurrencyData::Binance.price(currency)
+      message = "[#{currency.upcase}]"
 
-      message = "#{currency_name}
-                 #{coinmarketcap}
-                 #{maicoin}
-                 #{bitoex}
-                 #{huobi}
-                 #{okcoin}
-                 #{binance}
-                 "
+      Settings.crypto_exchanges.each do |exchange|
+        service = CurrencyData.new(exchange, currency)
+        info = service.get_info!
+        message.concat("#{info}\n") if info.present?
+      end
 
-       message.delete(" ")
+      message
     end
   end
 end
