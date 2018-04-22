@@ -12,8 +12,8 @@ class CurrencyData::Maicoin
 
         message = "[Maicoin_Price] #{price} (TWD)
                    [Maicoin_Sell] #{sell_price} (TWD)
-                   [Maicoin_Buy] #{buy_price} (TWD)
-                   "
+                   [Maicoin_Buy] #{buy_price} (TWD)"
+
         message.delete(" ")
       rescue
         nil

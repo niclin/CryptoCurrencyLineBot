@@ -15,8 +15,8 @@ class CurrencyData::Coinmarketcap
         message = "[排名] #{rank}
                    [1h漲跌 #{chart_emoji_1h}] #{percent_change_1h} %
                    [24h漲跌 #{chart_emoji_24h}] #{percent_change_24h} %
-                   [Coinmarketcap] #{price} (USD)
-                  "
+                   [Coinmarketcap] #{price} (USD)"
+
         message.delete(" ")
       rescue
         nil
