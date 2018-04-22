@@ -39,8 +39,7 @@ module BotMessage
       message = "[#{currency.upcase}]\n"
 
       Settings.crypto_exchanges.each do |exchange|
-        service = CurrencyData.new(exchange, currency)
-        info = service.get_info!
+        info = CurrencyDataService.new(exchange, currency).get_info!
         message.concat("#{info}\n") if info.present?
       end
 

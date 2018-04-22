@@ -11,16 +11,16 @@ class LineBotResponseService
   end
 
   def response!
-    response_message = ""
+    message = ""
 
     if trigger_response?
       key_word = @message_text.delete(" ").gsub('bot', '')
-      response_message = response_by_key_word(key_word) if key_word.present?
+      message = response_by_key_word(key_word) if key_word.present?
     end
 
-    return nil if response_message.blank?
+    return nil if message.blank?
 
-    response_message(response_message)
+    response_message(message)
   end
 
   private
@@ -37,9 +37,6 @@ class LineBotResponseService
   end
 
   def response_by_key_word(key_word)
-    return BotMessage.currency_price_info(key_word) if Settings.crypto_currencies.include?(key_word)
-    return BotMessage.help if key_word == "help"
-    return BotMessage.author if key_word == "nic"
-    return BotMessage.error
+    BotInstructionService.new(key_word).call!
   end
 end
