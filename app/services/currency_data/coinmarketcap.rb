@@ -6,7 +6,7 @@ class CurrencyData::Coinmarketcap
         currency_data = get_currency_data_from_response(response_body, currency)
 
         rank = currency_data["rank"]
-        price = currency_data["price_usd"]
+        price = currency_data["price_usd"].round(2)
         percent_change_24h = currency_data["percent_change_24h"]
         percent_change_1h = currency_data["percent_change_1h"]
         chart_emoji_1h = percent_change_1h.to_d.positive? ? "📈" : "📉"

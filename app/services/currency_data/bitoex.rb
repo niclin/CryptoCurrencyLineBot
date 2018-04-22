@@ -5,9 +5,11 @@ class CurrencyData::Bitoex
         raise Error, "Bitoex only support BTC" if currency != "btc"
 
         response_body = bitoex_ticker
+        sell_price = response_body["sell"].round(2)
+        buy_price = response_body["buy"].round(2)
 
-        message = "[Bitoex_Sell]#{response_body["sell"]} (TWD)
-                   [Bitoex_Buy]#{response_body["buy"]} (TWD)"
+        message = "[Bitoex_Sell]#{sell_price} (TWD)
+                   [Bitoex_Buy]#{buy_price} (TWD)"
 
         message.delete(" ")
       rescue

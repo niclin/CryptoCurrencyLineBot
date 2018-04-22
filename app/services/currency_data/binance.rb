@@ -5,7 +5,7 @@ class CurrencyData::Binance
       begin
         response_body = binance_ticker
         ticker = response_body.select { |ticker| ticker["symbol"] == "#{currency.upcase}USDT" }.first
-        average_price = ticker["price"]
+        average_price = ticker["price"].round(2)
 
         "[Binance_Price] #{average_price} (USDT)"
       rescue
