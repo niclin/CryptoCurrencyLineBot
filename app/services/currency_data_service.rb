@@ -1,5 +1,4 @@
 class CurrencyDataService
-
   def initialize(exchange, currency)
     @exchange = exchange
     @currency = currency

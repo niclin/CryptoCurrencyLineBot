@@ -17,7 +17,7 @@ module BotMessage
   end
 
   def version
-    "v1.0.0.beta"
+    "v1.0.1.beta"
   end
 
   def support_currencies
