@@ -36,7 +36,7 @@ module BotMessage
 
   def currency_price_info(currency)
     Rails.cache.fetch("#{currency}-data", expires_in: 60.seconds) do
-      message = "[#{currency.upcase}]"
+      message = "[#{currency.upcase}]\n"
 
       Settings.crypto_exchanges.each do |exchange|
         service = CurrencyData.new(exchange, currency)
