@@ -14,11 +14,10 @@ class CurrencyData::Maicoin < CurrencyData::Base
 
         human_fiat_currency = fiat.upcase
 
-        message = "[Maicoin_Price] #{price} (#{human_fiat_currency})
-                   [Maicoin_Sell] #{sell_price} (#{human_fiat_currency})
-                   [Maicoin_Buy] #{buy_price} (#{human_fiat_currency})"
+"[Maicoin_Price] #{price} (#{human_fiat_currency})
+[Maicoin_Sell] #{sell_price} (#{human_fiat_currency})
+[Maicoin_Buy] #{buy_price} (#{human_fiat_currency})"
 
-        message.delete(" ")
       rescue
         nil
       end

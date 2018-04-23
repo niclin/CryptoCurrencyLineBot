@@ -19,12 +19,11 @@ class CurrencyData::Coinmarketcap < CurrencyData::Base
 
         human_fiat_currency = fiat.upcase
 
-        message = "[排名] #{rank}
-                   [1h漲跌 #{chart_emoji_1h}] #{percent_change_1h} %
-                   [24h漲跌 #{chart_emoji_24h}] #{percent_change_24h} %
-                   [Coinmarketcap] #{price} (#{human_fiat_currency})"
+"[排名] #{rank}
+[1h漲跌 #{chart_emoji_1h}] #{percent_change_1h} %
+[24h漲跌 #{chart_emoji_24h}] #{percent_change_24h} %
+[Coinmarketcap] #{price} (#{human_fiat_currency})"
 
-        message.delete(" ")
       rescue
         nil
       end
