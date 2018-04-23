@@ -1,4 +1,6 @@
 class BotInstructionService
+  attr_reader :first_key_word, :second_key_word
+
   def initialize(key_words)
     @first_key_word = key_words[0]
     @second_key_word = key_words[1]
@@ -6,13 +8,13 @@ class BotInstructionService
 
   def call!
     if only_one_instruction?
-      return currency_price_info(@first_key_word) if Settings.crypto_currencies.include?(@first_key_word)
-      return help if @first_key_word == "help"
-      return author if @first_key_word == "nic"
+      return currency_price_info(first_key_word) if Settings.crypto_currencies.include?(first_key_word)
+      return help if first_key_word == "help"
+      return author if first_key_word == "nic"
     end
 
     if has_two_instruction?
-      return currency_price_info(@first_key_word, @second_key_word)
+      return currency_price_info(first_key_word, second_key_word)
     end
 
     return error
@@ -21,11 +23,11 @@ class BotInstructionService
   private
 
   def only_one_instruction?
-    @first_key_word.present? && @second_key_word.blank?
+    first_key_word.present? && second_key_word.blank?
   end
 
   def has_two_instruction?
-    @first_key_word.present? && @second_key_word.present?
+    first_key_word.present? && second_key_word.present?
   end
 
   def help
