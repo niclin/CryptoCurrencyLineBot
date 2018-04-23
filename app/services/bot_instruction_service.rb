@@ -14,7 +14,7 @@ class BotInstructionService
     end
 
     if has_two_instruction?
-      return currency_price_info(first_key_word, second_key_word)
+      return currency_price_info(first_key_word, second_key_word) if Settings.crypto_currencies.include?(first_key_word) && Settings.fiat_currencies.include?(second_key_word)
     end
 
     return error
