@@ -82,7 +82,7 @@ class BotInstructionService
   end
 
   def support_fiat_currencies
-    content = "bot "
+    content = "bot btc "
 
     Settings.fiat_currencies.each do |currency|
       content.concat("#{currency}/")
