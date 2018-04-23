@@ -19,3 +19,10 @@ crypto_exchanges:
   - binance
   - huobi
   - okcoin
+
+fiat_currencies:
+  - usd
+  - twd
+  - cny
+  - jpy
+  - krw
