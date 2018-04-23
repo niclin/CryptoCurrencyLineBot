@@ -13,7 +13,7 @@ class CurrencyData::Okcoin < CurrencyData::Base
         human_fiat_currency = fiat.upcase
 
         message = "[Okcoin_Price] #{price} (#{human_fiat_currency})"
-
+      rescue
         nil
       end
     end
