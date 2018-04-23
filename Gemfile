@@ -37,6 +37,7 @@ gem "line-bot-api"
 gem "figaro"
 gem "rest-client"
 gem "config"
+gem "google_currency", "~> 3.4.1"
 
 group :production do
   gem "pg"
