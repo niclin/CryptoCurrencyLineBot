@@ -32,8 +32,10 @@ class BotInstructionService
 
   def help
 "[指令說明]
-[BTC查詢] bot btc
+[幣價查詢] bot btc
+[法幣轉換] bot btc twd
 [支援幣種] #{support_currencies}
+[支援法幣] #{support_fiat_currencies}
 [作者] https://github.com/niclin
 [填寫建議] #{advice}
 [版本] #{version}
@@ -45,7 +47,7 @@ class BotInstructionService
   end
 
   def version
-    "v1.0.1.beta"
+    "v1.1.0.beta"
   end
 
   def author
@@ -73,6 +75,16 @@ class BotInstructionService
     content = "bot "
 
     Settings.crypto_currencies.each do |currency|
+      content.concat("#{currency}/")
+    end
+
+    content
+  end
+
+  def support_fiat_currencies
+    content = "bot "
+
+    Settings.fiat_currencies.each do |currency|
       content.concat("#{currency}/")
     end
 
