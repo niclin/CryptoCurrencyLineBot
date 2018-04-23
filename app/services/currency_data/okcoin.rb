@@ -9,6 +9,7 @@ class CurrencyData::Okcoin < CurrencyData::Base
         average_price = average_price.to_f
 
         price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat)
+        price = number_to_delimited(price)
 
         human_fiat_currency = fiat.upcase
 

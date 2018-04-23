@@ -9,6 +9,7 @@ class CurrencyData::Binance < CurrencyData::Base
         average_price = ticker["price"].to_f.round(2)
 
         price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat)
+        price = number_to_delimited(price)
 
         human_fiat_currency = fiat.upcase
 

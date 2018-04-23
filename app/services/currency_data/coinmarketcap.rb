@@ -16,6 +16,7 @@ class CurrencyData::Coinmarketcap < CurrencyData::Base
         chart_emoji_24h = percent_change_24h.to_d.positive? ? "📈" : "📉"
 
         price = FiatCurrencyConverter.exchange(amount: currency_data["price_usd"].to_f, from: default_fiat_currency, to: fiat)
+        price = number_to_delimited(price)
 
         human_fiat_currency = fiat.upcase
 

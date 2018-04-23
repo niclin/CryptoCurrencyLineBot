@@ -10,6 +10,9 @@ class CurrencyData::Bitoex < CurrencyData::Base
         sell_price = FiatCurrencyConverter.exchange(amount: response_body["sell"].to_f.round(2), from: default_fiat_currency, to: fiat)
         buy_price = FiatCurrencyConverter.exchange(amount: response_body["buy"].to_f.round(2), from: default_fiat_currency, to: fiat)
 
+        sell_price = number_to_delimited(sell_price)
+        buy_price = number_to_delimited(buy_price)
+
         human_fiat_currency = fiat.upcase
 
         message = "[Bitoex_Sell]#{sell_price} (#{human_fiat_currency})

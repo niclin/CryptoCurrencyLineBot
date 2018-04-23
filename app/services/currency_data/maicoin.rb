@@ -12,6 +12,10 @@ class CurrencyData::Maicoin < CurrencyData::Base
         sell_price = FiatCurrencyConverter.exchange(amount: response_body["sell_price"].to_f.round(2), from: default_fiat_currency, to: fiat)
         buy_price = FiatCurrencyConverter.exchange(amount: response_body["buy_price"].to_f.round(2), from: default_fiat_currency, to: fiat)
 
+        price = number_to_delimited(price)
+        sell_price = number_to_delimited(sell_price)
+        buy_price = number_to_delimited(buy_price)
+
         human_fiat_currency = fiat.upcase
 
 "[Maicoin_Price] #{price} (#{human_fiat_currency})
