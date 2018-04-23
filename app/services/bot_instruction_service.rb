@@ -1,17 +1,33 @@
 class BotInstructionService
 
-  def initialize(key_word)
-    @key_word = key_word
+  def initialize(key_words)
+    @first_key_word = key_words[0]
+    @second_key_word = key_words[1]
   end
 
   def call!
-    return currency_price_info(@key_word) if Settings.crypto_currencies.include?(@key_word)
-    return help if @key_word == "help"
-    return author if @key_word == "nic"
+    if only_one_instruction?
+      return currency_price_info(@first_key_word) if Settings.crypto_currencies.include?(@first_key_word)
+      return help if @first_key_word == "help"
+      return author if @first_key_word == "nic"
+    end
+
+    if has_two_instruction?
+      return currency_price_info(@first_key_word, @second_key_word)
+    end
+
     return error
   end
 
   private
+
+  def only_one_instruction?
+    @first_key_word.present? && @second_key_word.blank?
+  end
+
+  def has_two_instruction?
+    @first_key_word.present? && @second_key_word.present?
+  end
 
   def help
 "[指令說明]
@@ -39,12 +55,12 @@ class BotInstructionService
     "指令錯誤，輸入 bot help 瞭解完整指令。"
   end
 
-  def currency_price_info(currency)
+  def currency_price_info(currency, fiat_currency = nil)
     Rails.cache.fetch("#{currency}-data", expires_in: 60.seconds) do
       message = "[#{currency.upcase}]\n"
 
       Settings.crypto_exchanges.each do |exchange|
-        info = CurrencyDataService.new(exchange, currency).get_info!
+        info = CurrencyDataService.new(exchange, currency, fiat_currency).get_info!
         message.concat("#{info}\n") if info.present?
       end
 

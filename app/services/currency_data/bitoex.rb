@@ -1,6 +1,6 @@
 class CurrencyData::Bitoex
   class << self
-    def price(currency)
+    def price(currency, fiat_currancy)
       begin
         raise Error, "Bitoex only support BTC" if currency != "btc"
 

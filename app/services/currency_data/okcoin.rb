@@ -1,7 +1,6 @@
 class CurrencyData::Okcoin
   class << self
-
-    def price(currency)
+    def price(currency, fiat_currancy)
       begin
         response_body = get_okcoin_ticker(currency)
         average_price = (response_body["ticker"]["buy"].to_d + response_body["ticker"]["sell"].to_d) / 2

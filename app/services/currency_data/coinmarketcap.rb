@@ -1,6 +1,6 @@
 class CurrencyData::Coinmarketcap
   class << self
-    def price(currency)
+    def price(currency, fiat_currancy)
       begin
         response_body = coinmarketcap_ticker
         currency_data = get_currency_data_from_response(response_body, currency)

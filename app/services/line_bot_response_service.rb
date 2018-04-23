@@ -14,8 +14,8 @@ class LineBotResponseService
     message = ""
 
     if trigger_response?
-      key_word = @message_text.delete(" ").gsub('bot', '')
-      message = response_by_key_word(key_word) if key_word.present?
+      key_words = @message_text.remove("bot").strip.split(' ')
+      message = response_by_key_word(key_words) if key_words.present?
     end
 
     return nil if message.blank?
@@ -36,7 +36,7 @@ class LineBotResponseService
     }
   end
 
-  def response_by_key_word(key_word)
-    BotInstructionService.new(key_word).call!
+  def response_by_key_word(key_words)
+    BotInstructionService.new(key_words).call!
   end
 end

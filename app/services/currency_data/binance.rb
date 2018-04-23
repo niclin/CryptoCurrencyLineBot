@@ -1,7 +1,6 @@
 class CurrencyData::Binance
   class << self
-
-    def price(currency)
+    def price(currency, fiat_currancy)
       begin
         response_body = binance_ticker
         ticker = response_body.select { |ticker| ticker["symbol"] == "#{currency.upcase}USDT" }.first

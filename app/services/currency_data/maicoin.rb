@@ -1,6 +1,6 @@
 class CurrencyData::Maicoin
   class << self
-    def price(currency)
+    def price(currency, fiat_currancy)
       begin
         raise Error, "Maicoin only support BTC" if currency != "btc"
 
