@@ -1,18 +1,22 @@
 class CurrencyData::Maicoin < CurrencyData::Base
   class << self
     def price(currency, fiat_currancy)
+      fiat_currency = fiat_currancy || default_fiat_currency
+
       begin
         raise Error, "Maicoin only support BTC" if currency != "btc"
 
         response_body = maicoin_ticker
 
-        price = response_body["price"].to_f.round(2)
-        sell_price = response_body["sell_price"].to_f.round(2)
-        buy_price = response_body["buy_price"].to_f.round(2)
+        price = FiatCurrencyConverter.exchange(amount: response_body["price"].to_f.round(2), from: default_fiat_currency, to: fiat_currancy)
+        sell_price = FiatCurrencyConverter.exchange(amount: response_body["sell_price"].to_f.round(2), from: default_fiat_currency, to: fiat_currancy)
+        buy_price = FiatCurrencyConverter.exchange(amount: response_body["buy_price"].to_f.round(2), from: default_fiat_currency, to: fiat_currancy)
 
-        message = "[Maicoin_Price] #{price} (TWD)
-                   [Maicoin_Sell] #{sell_price} (TWD)
-                   [Maicoin_Buy] #{buy_price} (TWD)"
+        human_fiat_currency = fiat_currancy.upcase
+
+        message = "[Maicoin_Price] #{price} (#{human_fiat_currency})
+                   [Maicoin_Sell] #{sell_price} (#{human_fiat_currency})
+                   [Maicoin_Buy] #{buy_price} (#{human_fiat_currency})"
 
         message.delete(" ")
       rescue
@@ -21,6 +25,10 @@ class CurrencyData::Maicoin < CurrencyData::Base
     end
 
     private
+
+    def default_fiat_currency
+      "twd"
+    end
 
     def maicoin_api_endpoint
       "https://api.maicoin.com/v1/prices/twd"

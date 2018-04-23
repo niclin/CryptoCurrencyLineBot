@@ -1,21 +1,28 @@
 class CurrencyData::Coinmarketcap < CurrencyData::Base
   class << self
     def price(currency, fiat_currancy)
+      fiat_currency = fiat_currancy || default_fiat_currency
+
       begin
         response_body = coinmarketcap_ticker
         currency_data = get_currency_data_from_response(response_body, currency)
 
         rank = currency_data["rank"]
-        price = currency_data["price_usd"].to_f.round(2)
+
         percent_change_24h = currency_data["percent_change_24h"]
         percent_change_1h = currency_data["percent_change_1h"]
+
         chart_emoji_1h = percent_change_1h.to_d.positive? ? "📈" : "📉"
         chart_emoji_24h = percent_change_24h.to_d.positive? ? "📈" : "📉"
+
+        price = FiatCurrencyConverter.exchange(amount: currency_data["price_usd"].to_f, from: default_fiat_currency, to: fiat_currancy)
+
+        human_fiat_currency = fiat_currancy.upcase
 
         message = "[排名] #{rank}
                    [1h漲跌 #{chart_emoji_1h}] #{percent_change_1h} %
                    [24h漲跌 #{chart_emoji_24h}] #{percent_change_24h} %
-                   [Coinmarketcap] #{price} (USD)"
+                   [Coinmarketcap] #{price} (#{human_fiat_currency})"
 
         message.delete(" ")
       rescue
@@ -24,6 +31,10 @@ class CurrencyData::Coinmarketcap < CurrencyData::Base
     end
 
     private
+
+    def default_fiat_currency
+      "usd"
+    end
 
     def coinmarketcap_api_endpoint
       "https://api.coinmarketcap.com/v1/ticker/?limit=0"

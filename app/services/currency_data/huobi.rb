@@ -1,12 +1,18 @@
 class CurrencyData::Huobi < CurrencyData::Base
   class << self
     def price(currency, fiat_currancy)
+      fiat_currency = fiat_currancy || default_fiat_currency
+
       begin
         response_body = get_huobi_ticker(currency)
         average_price = (response_body["tick"]["ask"].first.to_d + response_body["tick"]["bid"].first.to_d) / 2
-        average_price = average_price.to_f.round(2)
+        average_price = average_price.to_f
 
-        message = "[Huobi_Price] #{average_price} (USDT)"
+        price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat_currancy)
+
+        human_fiat_currency = fiat_currancy.upcase
+
+        message = "[Huobi_Price] #{price} (#{human_fiat_currency})"
       rescue
         nil
       end
@@ -14,6 +20,10 @@ class CurrencyData::Huobi < CurrencyData::Base
 
 
     private
+
+    def default_fiat_currency
+      "usdt"
+    end
 
     def huobi_api_endpoint(currency)
       raise Error, "#{currency} is not supported" unless Settings.crypto_currencies.include?(currency)
