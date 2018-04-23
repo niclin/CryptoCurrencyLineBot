@@ -14,14 +14,13 @@ class BotInstructionService
   private
 
   def help
-    message = "[指令說明]
-               [BTC查詢] bot btc
-               [支援幣種] #{support_currencies}
-               [作者] https://github.com/niclin
-               [填寫建議] #{advice}
-               [版本] #{version}
-              "
-    message.chomp
+"[指令說明]
+[BTC查詢] bot btc
+[支援幣種] #{support_currencies}
+[作者] https://github.com/niclin
+[填寫建議] #{advice}
+[版本] #{version}
+"
   end
 
   def advice
