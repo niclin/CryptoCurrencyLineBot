@@ -18,7 +18,6 @@ class CurrencyData::Huobi < CurrencyData::Base
       end
     end
 
-
     private
 
     def default_fiat_currency
