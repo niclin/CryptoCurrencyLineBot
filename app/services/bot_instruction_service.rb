@@ -1,5 +1,4 @@
 class BotInstructionService
-
   def initialize(key_words)
     @first_key_word = key_words[0]
     @second_key_word = key_words[1]
@@ -56,7 +55,7 @@ class BotInstructionService
   end
 
   def currency_price_info(currency, fiat_currency = nil)
-    Rails.cache.fetch("#{currency}-data", expires_in: 60.seconds) do
+    Rails.cache.fetch("#{currency}-#{fiat_currency}-data", expires_in: 60.seconds) do
       message = "[#{currency.upcase}]\n"
 
       Settings.crypto_exchanges.each do |exchange|
