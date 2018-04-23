@@ -21,7 +21,7 @@ class BotInstructionService
                [填寫建議] #{advice}
                [版本] #{version}
               "
-    message.delete(" ")
+    message.chomp
   end
 
   def advice
