@@ -1,4 +1,4 @@
-class CurrencyData::Bitoex
+class CurrencyData::Bitoex < CurrencyData::Base
   class << self
     def price(currency, fiat_currancy)
       begin

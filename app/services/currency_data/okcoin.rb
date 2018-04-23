@@ -1,4 +1,4 @@
-class CurrencyData::Okcoin
+class CurrencyData::Okcoin < CurrencyData::Base
   class << self
     def price(currency, fiat_currancy)
       begin

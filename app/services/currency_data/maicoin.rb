@@ -1,4 +1,4 @@
-class CurrencyData::Maicoin
+class CurrencyData::Maicoin < CurrencyData::Base
   class << self
     def price(currency, fiat_currancy)
       begin

@@ -1,0 +1,2 @@
+class CurrencyData::Base
+end
