@@ -1,16 +1,16 @@
 class CurrencyData::Bitoex < CurrencyData::Base
   class << self
-    def price(currency, fiat_currancy)
-      fiat_currency = fiat_currancy || default_fiat_currency
+    def price(currency, fiat_currancy = nil)
+      fiat = fiat_currancy || default_fiat_currency
 
       begin
         raise Error, "Bitoex only support BTC" if currency != "btc"
 
         response_body = bitoex_ticker
-        sell_price = FiatCurrencyConverter.exchange(amount: response_body["sell"].to_f.round(2), from: default_fiat_currency, to: fiat_currancy)
-        buy_price = FiatCurrencyConverter.exchange(amount: response_body["buy"].to_f.round(2), from: default_fiat_currency, to: fiat_currancy)
+        sell_price = FiatCurrencyConverter.exchange(amount: response_body["sell"].to_f.round(2), from: default_fiat_currency, to: fiat)
+        buy_price = FiatCurrencyConverter.exchange(amount: response_body["buy"].to_f.round(2), from: default_fiat_currency, to: fiat)
 
-        human_fiat_currency = fiat_currancy.upcase
+        human_fiat_currency = fiat.upcase
 
         message = "[Bitoex_Sell]#{sell_price} (#{human_fiat_currency})
                    [Bitoex_Buy]#{buy_price} (#{human_fiat_currency})"

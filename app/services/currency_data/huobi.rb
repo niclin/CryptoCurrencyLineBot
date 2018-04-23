@@ -1,16 +1,16 @@
 class CurrencyData::Huobi < CurrencyData::Base
   class << self
-    def price(currency, fiat_currancy)
-      fiat_currency = fiat_currancy || default_fiat_currency
+    def price(currency, fiat_currancy = nil)
+      fiat = fiat_currancy || default_fiat_currency
 
       begin
         response_body = get_huobi_ticker(currency)
         average_price = (response_body["tick"]["ask"].first.to_d + response_body["tick"]["bid"].first.to_d) / 2
         average_price = average_price.to_f
 
-        price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat_currancy)
+        price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat)
 
-        human_fiat_currency = fiat_currancy.upcase
+        human_fiat_currency = fiat.upcase
 
         message = "[Huobi_Price] #{price} (#{human_fiat_currency})"
       rescue

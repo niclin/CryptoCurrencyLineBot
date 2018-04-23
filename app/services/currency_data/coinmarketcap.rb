@@ -1,7 +1,7 @@
 class CurrencyData::Coinmarketcap < CurrencyData::Base
   class << self
-    def price(currency, fiat_currancy)
-      fiat_currency = fiat_currancy || default_fiat_currency
+    def price(currency, fiat_currancy = nil)
+      fiat = fiat_currancy || default_fiat_currency
 
       begin
         response_body = coinmarketcap_ticker
@@ -15,9 +15,9 @@ class CurrencyData::Coinmarketcap < CurrencyData::Base
         chart_emoji_1h = percent_change_1h.to_d.positive? ? "📈" : "📉"
         chart_emoji_24h = percent_change_24h.to_d.positive? ? "📈" : "📉"
 
-        price = FiatCurrencyConverter.exchange(amount: currency_data["price_usd"].to_f, from: default_fiat_currency, to: fiat_currancy)
+        price = FiatCurrencyConverter.exchange(amount: currency_data["price_usd"].to_f, from: default_fiat_currency, to: fiat)
 
-        human_fiat_currency = fiat_currancy.upcase
+        human_fiat_currency = fiat.upcase
 
         message = "[排名] #{rank}
                    [1h漲跌 #{chart_emoji_1h}] #{percent_change_1h} %

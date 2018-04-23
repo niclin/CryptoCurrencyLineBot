@@ -1,19 +1,19 @@
 class CurrencyData::Okcoin < CurrencyData::Base
   class << self
     def price(currency, fiat_currancy)
-      fiat_currency = fiat_currancy || default_fiat_currency
+      fiat = fiat_currancy || default_fiat_currency
 
       begin
         response_body = get_okcoin_ticker(currency)
         average_price = (response_body["ticker"]["buy"].to_d + response_body["ticker"]["sell"].to_d) / 2
         average_price = average_price.to_f
 
-        price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat_currancy)
+        price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat)
 
-        human_fiat_currency = fiat_currancy.upcase
+        human_fiat_currency = fiat.upcase
 
         message = "[Okcoin_Price] #{price} (#{human_fiat_currency})"
-      rescue
+
         nil
       end
     end
