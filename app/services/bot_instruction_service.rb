@@ -32,9 +32,9 @@ class BotInstructionService
 
   def help
 "[指令說明]
-[幣價查詢] bot btc
-[法幣轉換] bot btc twd
-[支援幣種] #{support_currencies}
+[幣價查詢] bot {虛擬幣}
+[統一法幣] bot {虛擬幣} {法幣}
+[支援虛擬幣] #{support_currencies}
 [支援法幣] #{support_fiat_currencies}
 [作者] niclin
 [填寫建議] #{advice}
