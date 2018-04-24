@@ -1,10 +1,11 @@
 class FiatCurrencyConverter
   class << self
     def exchange(amount:, from:, to:)
+      basic_unit = basic_unit(from)
       from, to = "usd", "usd" if from == "usdt"
 
       from_currency = Money::Currency.new(from)
-      rate = Money.new(basic_unit(from), from_currency).exchange_to(to).to_d * from_currency.subunit_to_unit
+      rate = Money.new(basic_unit, from_currency).exchange_to(to).to_d * from_currency.subunit_to_unit
 
       (amount.to_d * rate).round(2)
     end
