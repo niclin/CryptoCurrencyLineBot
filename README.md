@@ -1,24 +1,29 @@
-# README
+## CryptoDogLineBot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+比特幣、以太坊等虛擬貨幣行情報價 Line 機器人
 
-Things you may want to cover:
+## 加入好友
 
-* Ruby version
+搜尋 ID : @eyt4263x
 
-* System dependencies
+掃描二維碼
 
-* Configuration
+![](pic/qrcode.png)
 
-* Database creation
+<a href="https://line.me/R/ti/p/%40eyt4263x"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
 
-* Database initialization
+## 使用說明
 
-* How to run the test suite
+輸入 bot help 可以查看指令及支援幣種
 
-* Services (job queues, cache servers, search engines, etc.)
+![](pic/demo1.gif)
 
-* Deployment instructions
+輸入 bot {currency} 可以查看該幣種當前資訊，預設幣種為接入該交易所 API 之直接顯示價值
 
-* ...
+![](pic/demo2.gif)
+
+輸入 bot {currency} {fiat_currency} 可以查看當前該幣種，並將其轉換為同一法幣估值
+
+## 贊助
+
+ETH : 0xC21352B20Acc6C693D4908ed7632afDF0294365f
