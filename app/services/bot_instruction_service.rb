@@ -80,8 +80,8 @@ class BotInstructionService
     content = ""
 
     Settings.crypto_currencies.each do |currency|
-      content.concat("#{currency}/")
-      content.concat("\n") unless Settings.fiat_currencies.last == currency
+      content.concat("#{currency}")
+      content.concat("/") unless Settings.fiat_currencies.last == currency
     end
 
     content
@@ -92,7 +92,7 @@ class BotInstructionService
 
     Settings.fiat_currencies.each do |currency|
       content.concat("#{currency}")
-      content.concat("\n") unless Settings.fiat_currencies.last == currency
+      content.concat("/") unless Settings.fiat_currencies.last == currency
     end
 
     content
