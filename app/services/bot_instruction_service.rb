@@ -36,9 +36,10 @@ class BotInstructionService
 [法幣轉換] bot btc twd
 [支援幣種] #{support_currencies}
 [支援法幣] #{support_fiat_currencies}
-[作者] https://github.com/niclin
+[作者] niclin
 [填寫建議] #{advice}
 [版本] #{version}
+[贊助ETH] #{donate_eth_address}
 "
   end
 
@@ -56,6 +57,10 @@ class BotInstructionService
 
   def error
     "指令錯誤，輸入 bot help 瞭解完整指令。"
+  end
+
+  def donate_eth_address
+    "0xC21352B20Acc6C693D4908ed7632afDF0294365f"
   end
 
   def currency_price_info(currency, fiat_currency = nil)
