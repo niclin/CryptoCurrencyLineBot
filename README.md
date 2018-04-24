@@ -10,7 +10,7 @@
 
 掃描二維碼
 
-<div style="width: 300px;">
+<div height="36">
 
 ![](pic/qrcode.png)
 
