@@ -16,7 +16,7 @@ class FiatCurrencyConverter
     private
 
     def usdt_to_usd_rate
-      Rails.cache.fetch("#{Time.zone.today}-usdt-rate", expires_in: 60.seconds) do
+      Rails.cache.fetch("#{Time.zone.today}-usdt-rate") do
         response = RestClient.get("https://api.coinmarketcap.com/v1/ticker/?limit=0")
 
         raise Error, "APIError, response: #{response}" if response.code != 200
