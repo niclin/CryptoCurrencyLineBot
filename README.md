@@ -10,25 +10,21 @@
 
 掃描二維碼
 
-<div height="36">
-
 ![](pic/qrcode.png)
-
-</div>
 
 ## 使用說明
 
 輸入 bot help 可以查看指令及支援幣種
 
-![](pic/demo1.gif)
+![](pic/demo1.png)
 
 輸入 bot {currency} 可以查看該幣種當前資訊，預設幣種為接入該交易所 API 之直接顯示價值
 
-![](pic/demo2.gif)
+![](pic/demo2.png)
 
 輸入 bot {currency} {fiat_currency} 可以查看當前該幣種，並將其轉換為同一法幣估值
 
-![](pic/demo3.gif)
+![](pic/demo3.png)
 
 ## 贊助
 
