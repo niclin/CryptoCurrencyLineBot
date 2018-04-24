@@ -4,13 +4,17 @@
 
 ## 加入好友
 
+<a href="https://line.me/R/ti/p/%40eyt4263x"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
+
 搜尋 ID : @eyt4263x
 
 掃描二維碼
 
+<div style="width: 300px;">
+
 ![](pic/qrcode.png)
 
-<a href="https://line.me/R/ti/p/%40eyt4263x"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
+</div>
 
 ## 使用說明
 
@@ -23,6 +27,8 @@
 ![](pic/demo2.gif)
 
 輸入 bot {currency} {fiat_currency} 可以查看當前該幣種，並將其轉換為同一法幣估值
+
+![](pic/demo3.gif)
 
 ## 贊助
 
