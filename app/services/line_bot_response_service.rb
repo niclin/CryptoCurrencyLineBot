@@ -7,9 +7,14 @@ class LineBotResponseService
 
     @message_type = params['events'][0]["message"]["type"].downcase
     @message_text = params['events'][0]["message"]["text"].downcase
+
+    @source_type = params['events'][0]['source']['type'].downcase
+    @source_group_token = params['events'][0]['source']['groupId']
   end
 
   def response!
+    record_group!
+
     message = ""
 
     if trigger_response?
@@ -23,6 +28,10 @@ class LineBotResponseService
   end
 
   private
+
+  def record_group
+    Group.find_or_create_by(token: @source_group_token) if @source_type == "group"
+  end
 
   def trigger_response?
     @message_type == "text" && @message_text.start_with?("bot")

@@ -11,6 +11,7 @@ class BotInstructionService
       return currency_price_info(first_key_word) if Settings.crypto_currencies.include?(first_key_word)
       return help if first_key_word == "help"
       return author if first_key_word == "nic"
+      return total_group if first_key_word == "group_total"
     end
 
     if has_two_instruction?
@@ -57,6 +58,12 @@ class BotInstructionService
 
   def error
     "指令錯誤，輸入 bot help 瞭解完整指令。"
+  end
+
+  def total_group
+    count = Group.count
+
+    "當前已服務 #{count} 個群組"
   end
 
   def donate_eth_address
