@@ -10,7 +10,6 @@ crypto_currencies:
   - qtum
   - bnb
   - ltc
-  - bnb
 
 crypto_exchanges:
   - coinmarketcap
