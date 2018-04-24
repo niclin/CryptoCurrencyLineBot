@@ -29,7 +29,7 @@ class LineBotResponseService
 
   private
 
-  def record_group
+  def record_group!
     Group.find_or_create_by(token: @source_group_token) if @source_type == "group"
   end
 
