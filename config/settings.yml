@@ -10,6 +10,12 @@ crypto_currencies:
   - qtum
   - bnb
   - ltc
+  - iota
+  - ada
+  - neo
+  - trx
+  - dash
+  - xlm
 
 crypto_exchanges:
   - coinmarketcap
