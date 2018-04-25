@@ -49,7 +49,7 @@ class BotInstructionService
   end
 
   def version
-    "v1.0.1 (20180424)"
+    "v1.0.2 (20180426)"
   end
 
   def author
