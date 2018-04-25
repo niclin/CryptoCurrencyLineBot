@@ -19,6 +19,7 @@ crypto_currencies:
 
 crypto_exchanges:
   - coinmarketcap
+  - poloniex
   - bitoex
   - maicoin
   - binance
