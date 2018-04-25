@@ -4,16 +4,15 @@ class CurrencyData::Poloniex < CurrencyData::Base
       fiat = fiat_currancy || default_fiat_currency
 
       begin
-        response_body = get_Poloniex_ticker(currency)
+        response_body = get_poloniex_ticker(currency)
 
-        # exchange_orders = response_body["asks"]
-        # puts exchange_orders
-        # exchange_orders.each do |order|
-        #   orders_price_total += order.first.to_d
-        # end
-        # puts orders_price_total
+        # asks和bids各拿取最新的一筆給latest_ticker
+        latest_ticker = {
+          "asks" => response_body["asks"].first,
+          "bids" => response_body["bids"].first
+        }
 
-        average_price = (response_body["asks"].first.first.to_d + response_body["bids"].first.first.to_d) / 2
+        average_price = (latest_ticker["asks"].first.to_d + latest_ticker["bids"].first.to_d) / 2
         average_price = average_price.to_f
 
         price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat)
@@ -33,10 +32,12 @@ class CurrencyData::Poloniex < CurrencyData::Base
       "usdt"
     end
 
-    def Poloniex_api_endpoint(currency)
+    def poloniex_api_endpoint(currency)
       raise Error, "#{currency} is not supported" unless Settings.crypto_currencies.include?(currency)
 
-      "https://poloniex.com/public?command=returnOrderBook&currencyPair=USDT_BTC&depth=1"
+      # depth 設定拿取幾筆最新的交易單
+      "https://poloniex.com/public?command=returnOrderBook&currencyPair=USDT_#{currency.upcase}&depth=1"
+
     end
 
     # Response example
@@ -46,11 +47,10 @@ class CurrencyData::Poloniex < CurrencyData::Base
     #   "isFrozen":"0","seq":234167469
     # }
 
-    def get_Poloniex_ticker(currency)
-      response = RestClient.get(Poloniex_api_endpoint(currency))
+    def get_poloniex_ticker(currency)
+      response = RestClient.get(poloniex_api_endpoint(currency))
 
       raise Error, "APIError, response: #{response}" if response.code != 200
-
       JSON.parse(response)
     end
   end
