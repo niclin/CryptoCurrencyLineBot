@@ -3,16 +3,9 @@ class CurrencyData::Poloniex < CurrencyData::Base
     def price(currency, fiat_currancy = nil)
       fiat = fiat_currancy || default_fiat_currency
 
-      begin
-        response_body = get_poloniex_ticker(currency)
+        response_body = get_poloniex_ticker
 
-        # asks和bids各拿取最新的一筆給latest_ticker
-        latest_ticker = {
-          "asks" => response_body["asks"].first,
-          "bids" => response_body["bids"].first
-        }
-
-        average_price = (latest_ticker["asks"].first.to_d + latest_ticker["bids"].first.to_d) / 2
+        average_price = response_body["#{default_fiat_currency.upcase}_#{currency.upcase}"]["last"]
         average_price = average_price.to_f
 
         price = FiatCurrencyConverter.exchange(amount: average_price, from: default_fiat_currency, to: fiat)
@@ -21,9 +14,7 @@ class CurrencyData::Poloniex < CurrencyData::Base
         human_fiat_currency = fiat.upcase
 
         message = "[Poloniex_Price] #{price} (#{human_fiat_currency})"
-      rescue
-        nil
-      end
+
     end
 
     private
@@ -32,23 +23,12 @@ class CurrencyData::Poloniex < CurrencyData::Base
       "usdt"
     end
 
-    def poloniex_api_endpoint(currency)
-      raise Error, "#{currency} is not supported" unless Settings.crypto_currencies.include?(currency)
-
-      # depth 設定拿取幾筆最新的交易單
-      "https://poloniex.com/public?command=returnOrderBook&currencyPair=USDT_#{currency.upcase}&depth=1"
-
+    def poloniex_api_endpoint
+      "https://poloniex.com/public?command=returnTicker"
     end
 
-    # Response example
-    # {
-    #   "asks":[["9479.00000000",0.82883196]],
-    #   "bids":[["9466.04128614",0.46115265]],
-    #   "isFrozen":"0","seq":234167469
-    # }
-
-    def get_poloniex_ticker(currency)
-      response = RestClient.get(poloniex_api_endpoint(currency))
+    def get_poloniex_ticker
+      response = RestClient.get(poloniex_api_endpoint)
 
       raise Error, "APIError, response: #{response}" if response.code != 200
       JSON.parse(response)
