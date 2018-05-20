@@ -15,8 +15,8 @@ class CurrencyData::Bitoex < CurrencyData::Base
 
         human_fiat_currency = fiat.upcase
 
-"[Bitoex_Sell]#{sell_price} (#{human_fiat_currency})
-[Bitoex_Buy]#{buy_price} (#{human_fiat_currency})"
+"[Bitoex_Sell] #{sell_price} (#{human_fiat_currency})
+[Bitoex_Buy] #{buy_price} (#{human_fiat_currency})"
 
       rescue
         nil
