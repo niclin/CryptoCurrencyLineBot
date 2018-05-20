@@ -3,6 +3,7 @@ class CurrencyData::Poloniex < CurrencyData::Base
     def price(currency, fiat_currancy = nil)
       fiat = fiat_currancy || default_fiat_currency
 
+      begin
         response_body = get_poloniex_ticker
 
         average_price = response_body["#{default_fiat_currency.upcase}_#{currency.upcase}"]["last"]
@@ -14,7 +15,9 @@ class CurrencyData::Poloniex < CurrencyData::Base
         human_fiat_currency = fiat.upcase
 
         message = "[Poloniex_Price] #{price} (#{human_fiat_currency})"
-
+      rescue
+        nil
+      end
     end
 
     private

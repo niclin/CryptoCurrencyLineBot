@@ -49,7 +49,7 @@ class BotInstructionService
   end
 
   def version
-    "v1.0.2 (20180426)"
+    "v1.0.3 (20180520)"
   end
 
   def author
@@ -84,14 +84,7 @@ class BotInstructionService
   end
 
   def support_currencies
-    content = ""
-
-    Settings.crypto_currencies.each do |currency|
-      content.concat("#{currency}")
-      content.concat("/") unless Settings.crypto_currencies.last == currency
-    end
-
-    content
+    "支援幣種數量 #{Settings.crypto_currencies.size} 種，不一一列出，coinmarketcap 上有的都有"
   end
 
   def support_fiat_currencies
