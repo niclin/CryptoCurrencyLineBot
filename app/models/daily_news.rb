@@ -1,0 +1,2 @@
+class DailyNews < ApplicationRecord
+end
