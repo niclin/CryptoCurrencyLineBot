@@ -12,6 +12,7 @@ class BotInstructionService
       return help if first_key_word == "help"
       return author if first_key_word == "nic"
       return total_group if first_key_word == "group_total"
+      return fcu_keynote if first_key_word == "fcu-sc-keynote"
     end
 
     if has_two_instruction?
@@ -32,16 +33,20 @@ class BotInstructionService
   end
 
   def help
-"[指令說明]
-[幣價查詢] bot {虛擬幣}
-[統一法幣] bot {虛擬幣} {法幣}
-[支援虛擬幣] #{support_currencies}
-[支援法幣] #{support_fiat_currencies}
-[作者] niclin
-[填寫建議] #{advice}
-[版本] #{version}
-[贊助ETH] #{donate_eth_address}
-"
+    "[指令說明]" \
+    "[幣價查詢] bot {虛擬幣}" \
+    "[統一法幣] bot {虛擬幣} {法幣}" \
+    "[支援虛擬幣] #{support_currencies}" \
+    "[支援法幣] #{support_fiat_currencies}" \
+    "[作者] niclin" \
+    "[填寫建議] #{advice}" \
+    "[版本] #{version}" \
+    "[贊助ETH] #{donate_eth_address}"
+  end
+
+  def fcu_keynote
+    "感謝你的聆聽，這是 Smart Contract 101 在逢甲大學的簡報下載 ^_^" \
+    "https://www.dropbox.com/s/ajdqw9dlnyd7iwq/%E6%99%BA%E8%83%BD%E5%90%88%E7%B4%84101.pdf?dl=0"
   end
 
   def advice
